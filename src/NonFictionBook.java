@@ -1,31 +1,35 @@
-import java.util.Scanner;
-import java.util.ArrayList;
 
-//Subclass NonFictionBook
-public class NonFictionBook extends Book {
+public  class NonFictionBook extends Book {
 
+    private String genre;
 
-    Scanner keyboard = new Scanner(System.in);
-    private String genre;//Delcaring variables
-    private String title;
-    private String author;
+    public NonFictionBook() {
+        super();
+        this.genre = "Non-Fiction";
+    }
 
-    public NonFictionBook (String title ,String author, String genre){
-        super(title, author);//Calls constructor of superclass
-        this.genre = genre;
-        this.author = author;//Declaring variables
-        this.title = title;
+    public NonFictionBook(int id, String title , String author, String publisher, boolean isAvailable) {
+        super(id, title, author, publisher, isAvailable);
+        this.genre = "Non-Fiction";
+    }
 
-        NonFictionBook [] NonFictionBooks = new NonFictionBook[5];//Setting array
+    public String getGenre() {
+        return genre;
+    }
+    @Override
+    public void printBook() {
+        String isAvailable;
 
-        for( int x = 0; x <5; x++) {
+        // Determine string to be displayed for Available column
+        if (super.isAvailable()) {
+            isAvailable = "Yes";
+        } else {
+            isAvailable = "No";
+        }
+        System.out.printf("\n%-10s%-24s%-23s%-17s%-17s%-12s%1s", "| " + super.getId(), "| " + super.getTitle(), "| " + super.getAuthor(),
+                "| " + super.getPublisher(), "| " + this.genre, "| " + isAvailable, "|");
+    }
 
-            System.out.print("Enter title of book");
-            title = keyboard.nextLine();
-            System.out.print("Enter author of book");//Entering in the details for title, author, genre
-            author = keyboard.nextLine();
-            System.out.print("Enter genre of book");
-            genre = keyboard.nextLine();
-            NonFictionBooks[x] = new NonFictionBook(title, author, genre);//Array for NonFiction Books
+    /* What methods shall we implement */
 
-        }}}
+}

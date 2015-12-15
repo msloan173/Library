@@ -1,33 +1,35 @@
-import java.util.Scanner;
-import java.util.ArrayList;
 
-//Subclass FictionBook
-     public class FictionBook extends Book {
-        Scanner keyboard = new Scanner(System.in);
-        private String genre;//Delcaring variables
-        private String title;
-        private String author;
+public  class FictionBook extends Book {
 
-         public FictionBook (String title ,String author, String genre){
-             super(title, author);//Calls constructor of superclass
-             this.genre = genre;
-             this.author = author;//Declaring variables
-             this.title = title;
+    private String genre = "Fiction";
 
-             FictionBook [] FictionBooks = new FictionBook[5];//Setting array
+    public FictionBook() {
+        super();
+        genre = "Fiction";
+    }
 
-             for( int x = 0; x <5; x++) {
+    public FictionBook(int id, String title , String author, String publisher, boolean isAvailable) {
+        super(id, title, author, publisher, isAvailable);
+        genre = "Fiction";
+    }
 
-                 System.out.print("Enter title of book");
-                 title = keyboard.nextLine();
-                 System.out.print("Enter author of book");//Entering in the details for title, author, genre
-                 author = keyboard.nextLine();
-                 System.out.print("Enter genre of book");
-                 genre = keyboard.nextLine();
-                 FictionBooks[x] = new FictionBook(title, author, genre);//Array for Fiction Books
-             }
+    public String getGenre() {
+        return genre;
+    }
 
+    @Override
+    public void printBook() {
+        String isAvailable;
 
-             }
+        // Determine string to be displayed for Available column
+        if (super.isAvailable()) {
+            isAvailable = "Yes";
+        } else {
+            isAvailable = "No";
+        }
+        System.out.printf("\n%-10s%-24s%-23s%-17s%-17s%-12s%1s", "| " + super.getId(), "| " + super.getTitle(), "| " + super.getAuthor(),
+                "| " + super.getPublisher(), "| " + this.genre, "| " + isAvailable, "|");
+    }
+    /* What methods shall we implement */
 
-         }
+}
